@@ -29,7 +29,7 @@ stages:
     - task: Bash@3
       inputs:
         targetType: 'inline'
-        script: 'Value of Build.SourcesDirectory is $(Build.SourcesDirector)'
+        script: 'Value of Build.SourcesDirectory is $(Build.SourcesDirectory)'
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
