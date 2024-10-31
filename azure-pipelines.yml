@@ -26,10 +26,6 @@ stages:
   - job: Build
     displayName: Build
     steps:
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: 'Value of Build.SourcesDirectory is $(Build.SourcesDirectory)'
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
