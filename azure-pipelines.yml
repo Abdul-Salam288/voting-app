@@ -13,7 +13,7 @@ variables:
   dockerRegistryServiceConnection: 'bf47c0e3-8964-48e3-a1ca-c2b86bf001a6'
   imageRepository: 'votingapp'
   containerRegistry: 'hadii.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/result/Dockerfile'
+  dockerfilePath: '$(Pipeline.Workspace)/vote/Dockerfile'
   tag: '$(Build.BuildId)'
 
 pool:
