@@ -5,7 +5,10 @@
 trigger: none
 
 resources:
-- repo: self
+ pipelines:
+   - pipeline: voting-app
+     source: voting-app
+     trigger: true
 
 variables:
   # Container registry service connection established during pipeline creation
