@@ -6,8 +6,8 @@ trigger: none
 
 resources:
  pipelines:
-   - pipeline: voting-app
-     source: voting-app
+   - pipeline: Voting-app
+     source: Voting-app
      trigger: true
 
 variables:
