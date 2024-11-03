@@ -5,7 +5,7 @@
 services:
   vote:
     container_name: vote-app
-    image: votingapp
+    image: votingapp:latest
     healthcheck: 
       test: ["CMD", "curl", "-f", "http://localhost"]
       interval: 15s
@@ -22,7 +22,7 @@ services:
 
   result:
     container_name: result-app
-    image: resultapp
+    image: resultapp:latest
     # use nodemon rather than node for local dev
     entrypoint: nodemon --inspect=0.0.0.0 server.js
     volumes:
@@ -35,7 +35,7 @@ services:
       - back-tier
 
   worker:
-    container_name: worker-app
+    container_name: worker-app:latest
     image: workerapp
     networks:
       - back-tier
