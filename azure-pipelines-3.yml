@@ -19,7 +19,10 @@ stages:
   jobs:
   - deployment: DeployToVM
     displayName: 'Deploy to VM'
-    environment: 'QA'  # Replace with your environment name
+    environment: 
+     name: QA
+     resourceName: QA-Server
+     resourceType: virtualMachine
     strategy:
       runOnce:
         deploy:
