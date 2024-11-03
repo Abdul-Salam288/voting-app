@@ -9,6 +9,9 @@ resources:
 
 variables:
  test: test
+ 
+pool:
+  name: Default
 
 stages:
 - stage: DeployToQA
