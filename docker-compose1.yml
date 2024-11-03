@@ -79,3 +79,15 @@ services:
       interval: "5s"
     networks:
       - back-tier
+
+volumes:
+  db-data:
+   name: db-data
+
+networks:
+  front-tier:
+   name: front-tier
+   driver: bridge
+  back-tier:
+   name: back-tier
+   driver: bridge
