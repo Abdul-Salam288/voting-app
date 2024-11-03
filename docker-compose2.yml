@@ -2,6 +2,11 @@
 # v2 and v3 are now combined!
 # docker-compose v1.27+ required
 
+version: '3.8'
+
+x-project-settings:  
+ name: "abdul-salam288-voting-app"
+
 services:
   vote:
     container_name: vote-app
