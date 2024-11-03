@@ -11,24 +11,30 @@ resources:
      trigger: true
 
 variables:
- test: test
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'bf47c0e3-8964-48e3-a1ca-c2b86bf001a6'
+  imageRepository: 'resultapp'
+  containerRegistry: 'hadii.azurecr.io'
+  dockerfilePath: '$(Pipeline.Workspace)/s/result/Dockerfile'
+  tag: '$(Build.BuildId)'
 
 pool:
   name: Default
 
 stages:
-- stage: DeployToQA
-  displayName: DeployToQA
+- stage: Build_ResultApp
+  displayName: Build and push stage
   jobs:
-  - job: DeployToQA
-    displayName: DeployToQA
-    environment: 'QA'
+  - job: Build_ResultApp
+    displayName: Build_ResultApp
     steps:
-    - task: DockerCompose@1
+    - task: Docker@2
+      displayName: Build and push an image to container registry
       inputs:
-        containerregistrytype: 'Azure Container Registry'
-        azureSubscription: 'Azure subscription Pay as you Go(1ba2ff14-c7cb-42e3-8e10-8e71d9bd27d7)'
-        azureContainerRegistry: '{"loginServer":"hadii.azurecr.io", "id" : "/subscriptions/1ba2ff14-c7cb-42e3-8e10-8e71d9bd27d7/resourceGroups/Azure-Devops/providers/Microsoft.ContainerRegistry/registries/hadii"}'
-        dockerComposeFile: '**/docker-compose2.yml'
-        action: 'Run a Docker Compose command'
-        dockerComposeCommand: 'docker compose -f docker-compose2.yml up -d'
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          latest
+          $(tag)
