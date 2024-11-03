@@ -7,6 +7,9 @@ trigger: none
 resources:
 - repo: self
 
+pool:
+ name: Default
+
 variables:
  dockerComposePath: '$(Pipeline.Workspace)/s'
 
