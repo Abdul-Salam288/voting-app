@@ -30,7 +30,5 @@ stages:
           - task: Bash@3
             inputs:
               targetType: 'inline'
-              script: |
-                cd $(dockerComposePath)
-                ls
+              script: 'pwd'
 
