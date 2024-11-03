@@ -5,7 +5,7 @@
 services:
   vote:
     container_name: vote-app
-    image: votingapphadii.azurecr.io/votingapp
+    image: hadii.azurecr.io/votingapp
     healthcheck: 
       test: ["CMD", "curl", "-f", "http://localhost"]
       interval: 15s
@@ -22,7 +22,7 @@ services:
 
   result:
     container_name: result-app
-    image: votingapphadii.azurecr.io/resultapp
+    image: hadii.azurecr.io/resultapp
     # use nodemon rather than node for local dev
     entrypoint: nodemon --inspect=0.0.0.0 server.js
     volumes:
@@ -35,7 +35,7 @@ services:
       - back-tier
 
   worker:
-    container_name: votingapphadii.azurecr.io/worker-app
+    container_name: hadii.azurecr.io/worker-app
     image: workerapp
     networks:
       - back-tier
