@@ -9,9 +9,6 @@ resources:
 
 variables:
  dockerComposePath: '$(Pipeline.Workspace)/s'
- 
-pool:
-  name: Default
 
 stages:
 - stage: DeployToQA
