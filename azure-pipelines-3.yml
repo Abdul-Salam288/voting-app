@@ -27,5 +27,7 @@ stages:
       runOnce:
         deploy:
           steps:
-          - script: ls
+          - script: |
+                cd $(dockerComposePath)
+                ls
 
