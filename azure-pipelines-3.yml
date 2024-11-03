@@ -16,14 +16,15 @@ stages:
   jobs:
   - deployment: DeployToQA
     environment: 'QA'
-  - job: Build
-    displayName: Build
-    steps:
-    - task: DockerCompose@1
-      inputs:
-        containerregistrytype: 'Azure Container Registry'
-        azureSubscription: 'Azure subscription Pay as you Go(1ba2ff14-c7cb-42e3-8e10-8e71d9bd27d7)'
-        azureContainerRegistry: '{"loginServer":"hadii.azurecr.io", "id" : "/subscriptions/1ba2ff14-c7cb-42e3-8e10-8e71d9bd27d7/resourceGroups/Azure-Devops/providers/Microsoft.ContainerRegistry/registries/hadii"}'
-        dockerComposeFile: '**/docker-compose2.yml'
-        action: 'Run a Docker Compose command'
-        dockerComposeCommand: 'docker compose -f docker-compose2.yml up -d'
+    strategy:      
+     runOnce:        
+      deploy:
+       steps:
+        - task: DockerCompose@1
+          inputs:
+            containerregistrytype: 'Azure Container Registry'
+            azureSubscription: 'Azure subscription Pay as you Go(1ba2ff14-c7cb-42e3-8e10-8e71d9bd27d7)'
+            azureContainerRegistry: '{"loginServer":"hadii.azurecr.io", "id" : "/subscriptions/1ba2ff14-c7cb-42e3-8e10-8e71d9bd27d7/resourceGroups/Azure-Devops/providers/Microsoft.ContainerRegistry/registries/hadii"}'
+            dockerComposeFile: '**/docker-compose2.yml'
+            action: 'Run a Docker Compose command'
+            dockerComposeCommand: 'docker compose -f docker-compose2.yml up -d'
