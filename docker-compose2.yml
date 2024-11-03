@@ -35,8 +35,8 @@ services:
       - back-tier
 
   worker:
-    container_name: worker-app
-    image: hadii.azurecr.io/workerapp
+    container_name: hadii.azurecr.io/workerapp
+    image: workerapp
     networks:
       - back-tier
 
