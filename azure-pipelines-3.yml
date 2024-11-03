@@ -14,19 +14,15 @@ variables:
  dockerComposePath: '$(Pipeline.Workspace)/s'
 
 stages:
-- stage: DeployToQA
-  displayName: DeployToQA
+- stage: DockerCompose
+  displayName: DockerCompose
   jobs:
-  - deployment: DeployToQA
-    environment: 'QA'
-    strategy:      
-     runOnce:        
-      deploy:
-       steps:
-        - task: Bash@3
-          inputs:
-            targetType: 'inline'
-            script: |
-                            cd $(dockerComposePath)
-                            ls
-                            displayName: 'Run Docker Compose'
+  - job: DockerCompose
+    displayName: DockerCompose
+    steps:
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
+          cd $(dockerComposePath)
+                docker-compose -f docker-compose.yml up -d
