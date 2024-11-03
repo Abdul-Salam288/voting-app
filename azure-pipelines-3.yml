@@ -28,5 +28,5 @@ stages:
             targetType: 'inline'
             script: |
                             cd $(dockerComposePath)
-                            docker-compose -f docker-compose2.yml up -d
+                            docker compose -f docker-compose2.yml up -d
                             displayName: 'Run Docker Compose'
