@@ -14,11 +14,11 @@ variables:
  dockerComposePath: '/home/azureuser/azagent/azagent/_work/1/s'
 
 stages:
-- stage: DeployToVM
-  displayName: 'Deploy to VM Environment'
+- stage: DeployToQA
+  displayName: 'Deploy to QA Environment'
   jobs:
-  - deployment: DeployToVM
-    displayName: 'Deploy to VM'
+  - deployment: DeployToQA
+    displayName: 'Deploy to QA'
     environment: 
      name: QA
      resourceName: QA-Server
@@ -32,4 +32,19 @@ stages:
             inputs:
               targetType: 'inline'
               script: 'docker compose -f docker-compose2.yml up -d'
+
+- stage: DeployToAKS
+  displayName: DeployToAKS
+  jobs:
+  - job: DeployToAKS
+    displayName: DeployToAKS
+    steps:
+    - task: KubernetesManifest@1
+      inputs:
+        action: 'deploy'
+        connectionType: 'azureResourceManager'
+        azureSubscriptionConnection: 'Azure subscription Pay as you Go(1ba2ff14-c7cb-42e3-8e10-8e71d9bd27d7)'
+        azureResourceGroup: 'Azure-Devops'
+        kubernetesCluster: 'K8S'
+        manifests: 'k8s-specifications/*'
 
