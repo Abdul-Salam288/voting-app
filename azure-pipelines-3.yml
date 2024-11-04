@@ -21,7 +21,7 @@ stages:
     displayName: 'Deploy to QA'
     environment: 
      name: QA
-     resourceName: QA-Server
+     resourceName: QA-server
      resourceType: virtualMachine
     strategy:
       runOnce:
